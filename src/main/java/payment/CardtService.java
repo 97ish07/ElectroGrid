@@ -1,5 +1,5 @@
 package payment;
-//For REST Service
+// REST Service
 import javax.ws.rs.*; 
 import javax.ws.rs.core.MediaType; 
 //For JSON
