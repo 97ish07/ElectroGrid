@@ -11,7 +11,7 @@ import model.Card;
 import org.jsoup.*; 
 import org.jsoup.parser.*; 
 import org.jsoup.nodes.Document; 
-@Path("/Payment")
+@Path("/Card")
  
 public class CardtService 
 { 
