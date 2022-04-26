@@ -1,4 +1,4 @@
-package payment;
+package com;
 
 //For REST Service
 import javax.ws.rs.*; 

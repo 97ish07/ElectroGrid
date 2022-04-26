@@ -1,4 +1,4 @@
-package payment;
+package com;
 // REST Service
 import javax.ws.rs.*; 
 import javax.ws.rs.core.MediaType; 
@@ -11,7 +11,7 @@ import model.Card;
 import org.jsoup.*; 
 import org.jsoup.parser.*; 
 import org.jsoup.nodes.Document; 
-@Path("/Payment")
+@Path("/Card")
  
 public class CardtService 
 { 
@@ -47,13 +47,13 @@ public String updateCard(String itemData)
 //Convert the input string to a JSON object 
  JsonObject itemObject = new JsonParser().parse(itemData).getAsJsonObject(); 
 //Read the values from the JSON object
- String itemID = itemObject.get("itemID").getAsString(); 
+ String cardID = itemObject.get("cardID").getAsString(); 
  String cardHolderName = itemObject.get("cardHolderName").getAsString(); 
  String cardNo = itemObject.get("cardNo").getAsString(); 
  String Month = itemObject.get("Month").getAsString(); 
  String Year = itemObject.get("Year").getAsString();
  String ccvNo = itemObject.get("ccvNo").getAsString(); 
- String output = itemObj.updateCard(itemID, cardHolderName, cardNo, Month, Year,ccvNo); 
+ String output = itemObj.updateCard(cardID, cardHolderName, cardNo, Month, Year,ccvNo); 
 return output; 
 }
 
@@ -67,8 +67,8 @@ public String deleteCard(String itemData)
  Document doc = Jsoup.parse(itemData, "", Parser.xmlParser()); 
  
 //Read the value from 
- String itemID = doc.select("itemID").text(); 
- String output = itemObj.deleteCard(itemID); 
+ String cardID = doc.select("cardID").text(); 
+ String output = itemObj.deleteCard(cardID); 
 return output; 
 }
 

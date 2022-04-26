@@ -28,7 +28,7 @@ public String insertCardData(String name, String cardno, String month, String ye
  if (con == null) 
  {return "Error while connecting to the database for inserting."; } 
  // create a prepared statement
- String query = " insert into carddata (`itemID`,`cardHolderName`,`cardNo`,`Month`,`Year`,`ccvNo`)"
+ String query = " insert into carddata (`cardID`,`cardHolderName`,`cardNo`,`Month`,`Year`,`ccvNo`)"
  + " values (?, ?, ?, ?, ? , ?)"; 
  PreparedStatement preparedStmt = con.prepareStatement(query); 
  // binding values
@@ -71,14 +71,14 @@ public String readCardData()
  // iterate through the rows in the result set
  while (rs.next()) 
  { 
- String itemID = Integer.toString(rs.getInt("itemID")); 
+ String cardID = Integer.toString(rs.getInt("cardID")); 
  String cardHolderName = rs.getString("cardHolderName"); 
  String cardNo = rs.getString("cardNo"); 
  String Month = rs.getString("Month"); 
  String Year = rs.getString("Year"); 
  String ccvNo = rs.getString("ccvNo");
  // Add into the html table
- output += "<tr>  <td>" + itemID + "</td>"; 
+ output += "<tr>  <td>" + cardID + "</td>"; 
  output += "<td>" + cardHolderName + "</td>"; 
  output += "<td>" + cardNo + "</td>"; 
  output += "<td>" + Month + "</td>"; 
@@ -86,7 +86,7 @@ public String readCardData()
  output += "<td>" + ccvNo + "</td>"; 
  // buttons
  output += "<td><input name='btnUpdate' type='button' value='Update' class='btn btn-secondary'></td>"+ "<td><form method='post' action='items.jsp'>"+ "<input name='btnRemove' type='submit' value='Remove' class='btn btn-danger'>"
- + "<input name='itemID' type='hidden' value='" + itemID 
+ + "<input name='cardID' type='hidden' value='" + cardID 
  + "'>" + "</form></td></tr>"; 
  } 
  con.close(); 
@@ -111,7 +111,7 @@ public String updateCard(String ID, String name, String cardno, String month, St
 	 if (con == null) 
 	 {return "Error while connecting to the database for updating."; } 
 	 // create a prepared statement
-	 String query = "UPDATE carddata SET cardHolderName=?,cardNo=?,Month=?,Year=?,ccvNo=? WHERE itemID=?"; 
+	 String query = "UPDATE carddata SET cardHolderName=?,cardNo=?,Month=?,Year=?,ccvNo=? WHERE cardID=?"; 
 	 PreparedStatement preparedStmt = con.prepareStatement(query); 
 	 // binding values
 	 
@@ -143,7 +143,7 @@ public String updateCard(String ID, String name, String cardno, String month, St
 	 if (con == null) 
 	 {return "Error while connecting to the database for deleting."; } 
 	 // create a prepared statement
-	 String query = "delete from carddata where itemID=?"; 
+	 String query = "delete from carddata where cardID=?"; 
 	 PreparedStatement preparedStmt = con.prepareStatement(query); 
 	 // binding values
 	 preparedStmt.setInt(1, Integer.parseInt(itemID)); 
@@ -154,7 +154,7 @@ public String updateCard(String ID, String name, String cardno, String month, St
 	 } 
 	 catch (Exception e) 
 	 { 
-	 output = "Error while deleting the item."; 
+	 output = "Error while deleting the card details."; 
 	 System.err.println(e.getMessage()); 
 	 } 
 	 return output; 
