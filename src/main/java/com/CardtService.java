@@ -1,4 +1,4 @@
-package payment;
+package com;
 // REST Service
 import javax.ws.rs.*; 
 import javax.ws.rs.core.MediaType; 
